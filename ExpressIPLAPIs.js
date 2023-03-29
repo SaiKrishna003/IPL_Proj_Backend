@@ -1,11 +1,13 @@
 const express = require('express')
 const { MongoClient} = require('mongodb')
-
+const cors = require('cors')
 
 const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let app = express()
+app.use(cors())
+
 async function getDocuments(collectionName) {
 
     try {
