@@ -1,8 +1,8 @@
 const express = require('express')
 const { MongoClient} = require('mongodb')
 
-// const uri = 'mongodb://localhost:27017/';
-const uri = 'mongodb+srv://rr2137059:rr2137059@mycluster.su7v5hq.mongodb.net/?retryWrites=true&w=majority'
+
+const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let app = express()
@@ -10,7 +10,7 @@ async function getDocuments(collectionName) {
 
     try {
         await client.connect();
-        const database = client.db('IPL_Squads');
+        const database = client.db(process.env.MONGODB_DATABASE_1);
         const collection = database.collection(collectionName);
         const user = collection.find().project({_id:0})
         return await user.toArray()
@@ -25,7 +25,7 @@ async function getStats(collectionName) {
 
     try {
         await client.connect();
-        const database = client.db('IPL_Statistics');
+        const database = client.db(process.env.MONGODB_DATABASE_2);
         const collection = database.collection(collectionName);
         const user = collection.find().project({_id:0})
         return await user.toArray()

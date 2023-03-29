@@ -6,9 +6,8 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "ExpressIPLAPIs.js",
-  "devDependencies": {},
   "scripts": {
-    "start" : "node ExpressIPLAPIs.js"
+    "start": "node ExpressIPLAPIs.js"
   },
   "repository": {
     "type": "git",
